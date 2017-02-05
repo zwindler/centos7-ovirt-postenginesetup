@@ -1,0 +1,26 @@
+---
+- name: stay to Permissive until I figure out what goes wrong when Enforcing
+  selinux:
+    policy: targeted
+    state: permissive
+- name: uncomment the last 3 lines with Ciphers, MACs and KexAlgorithms
+  lineinfile: 
+    backrefs: yes
+    dest: /etc/ssh/sshd_config
+    regexp: '#Ciphers(.*)$'
+    line: 'Ciphers\1'
+  notify: 'restart sshd'
+- name: uncomment the last 3 lines with Ciphers, MACs and KexAlgorithms
+  lineinfile:
+    backrefs: yes
+    dest: /etc/ssh/sshd_config
+    regexp: '#MACs(.*)$'
+    line: 'MACs\1'
+  notify: 'restart sshd'
+- name: uncomment the last 3 lines with Ciphers, MACs and KexAlgorithms
+  lineinfile:
+    backrefs: yes
+    dest: /etc/ssh/sshd_config
+    regexp: '#KexAlgorithms(.*)$'
+    line: 'KexAlgorithms\1'
+  notify: 'restart sshd'
